@@ -7,6 +7,8 @@ import datetime
 chrome_options = Options()
 # chrome_options.add_argument('--start-maximized')
 chrome_options.add_argument('--headless')
+# Disable log from webdriver
+chrome_options.add_argument('--log-level=3')
 url = 'https://mint.avatizer.art'
 
 
@@ -37,18 +39,21 @@ def get_url_page():
 
 def browser_quit():
     browser.quit()
-    print('Quit browser')
+    print("Quit browser\n")
     # browser.close()
     # print('Close browser')
 
 
 users = inp_ut_qty('Enter the number of users: ')
 password = inp_ut_password('Input password for Login (if exist): ')
+now = datetime.datetime.now()
+date_time = (now.strftime("%Y-%m-%d  %H:%M:%S"))
+print(f"Test begin:  {date_time}")
 
 i = 1
 while i <= users:
     print("**************************\n")
-    print(f"Item:  {i}")
+    print(f"User:  {i}")
     print('Open browser')
     browser = get_url_page()
     print('Get URl')
@@ -75,4 +80,7 @@ while i <= users:
     print("click button Connect My Wallet")
     browser_quit()
     i += 1
-
+now = datetime.datetime.now()
+date_time = (now.strftime("%Y-%m-%d  %H:%M:%S"))
+print(f"Test ended:  {date_time}\n")
+input('Press ENTER to exit')
